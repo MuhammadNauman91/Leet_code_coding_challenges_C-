@@ -1,6 +1,7 @@
 #include <iostream>
 #include <vector>
 #include <map>
+#include <utility>
 #include <unordered_map>
 #include <string>
 using namespace std;
@@ -9,7 +10,7 @@ public:
    vector<int> twoSum(vector<int>& nums, int target) 
     {
     // Create Target indices saving 
-    vector<int> target_indices;
+    vector<int> pair;
     // Create map 
     unordered_map<int, int> hash_map;
 
@@ -20,18 +21,18 @@ public:
           if(hash_map.find(second_integer)!=hash_map.end())
           {
             int Index = hash_map.find(second_integer)->second;
-            target_indices.push_back(Index);
-            target_indices.push_back(i);
+            pair.push_back(Index);
+            pair.push_back(i);
 
             break;
           }
           else
           {
-            hash_map[nums[i]] = i;
+            hash_map.insert(std::pair<int,int> (nums[i],i));
           }
           
         }
-          return target_indices;
+          return pair;
       }
  
 };
